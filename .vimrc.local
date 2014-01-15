@@ -1,0 +1,16 @@
+set nocursorline " don't highlight current line
+set cc=80
+
+" keyboard shortcuts
+inoremap jj <ESC>
+
+execute pathogen#infect()
+
+" gui settings
+if (&t_Co == 256 || has('gui_running'))
+  if ($TERM_PROGRAM == 'iTerm.app')
+    colorscheme solarized
+  else
+    colorscheme desert
+  endif
+endif

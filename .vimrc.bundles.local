@@ -1,0 +1,3 @@
+Bundle 'janx/vim-rubytest'
+Bundle 'rodjek/vim-puppet'
+Bundle 'elixir-lang/vim-elixir'
