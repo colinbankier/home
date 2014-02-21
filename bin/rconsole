@@ -1,0 +1,15 @@
+#! /bin/bash
+
+HOST=$1
+if [ -z $HOST ]; then
+  exit 1
+fi
+
+CMD="cd /var/www/apps/supporter"
+CMD="$CMD && . ./shared/config/environment"
+CMD="$CMD && cd current"
+CMD="$CMD && RAILS_ENV=production bin/rails c"
+
+echo "Opening Rails console for supporter on host $HOST"
+
+ssh $HOST -t "$CMD"

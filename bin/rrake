@@ -1,0 +1,17 @@
+#! /bin/bash
+
+HOST=$1
+shift
+if [ -z $HOST ]; then
+  exit 1
+fi
+
+CMD="cd /var/www/apps/supporter"
+CMD="$CMD && . ./shared/config/environment"
+CMD="$CMD && cd current"
+CMD="$CMD && RAILS_ENV=production bin/rake $@"
+
+echo "Executing rake task $@ on host $HOST"
+echo $CMD
+
+ssh $HOST -t "$CMD"

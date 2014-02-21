@@ -14,3 +14,16 @@ if (&t_Co == 256 || has('gui_running'))
     colorscheme desert
   endif
 endif
+
+" Ctrl-P don't index this crap
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)|vendor$'
+
+" mouse support
+set mouse=a
+vmap <Esc>c "+y
+
+map <Esc><right> :tabn<cr>
+map <Esc><left> :tabp<cr>
+
+" SEATTLE STYLE
+map <Leader>s :s/(\([^)]*\))$/ \1/<cr>

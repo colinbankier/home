@@ -50,6 +50,7 @@ export PATH=/Users/colin.bankier/.rbenv/shims:/usr/local/sbin:/usr/local/bin:/Us
 export PATH="/usr/local/sbin:/usr/local/bin:$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/Play/elixir/bin:$PATH"
 export PATH="/usr/local/packer:$PATH"
+export PATH="/Users/colin.bankier/bin:$PATH"
 #eval "$(rbenv init -)"
 if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
 export EDITOR=vim
@@ -62,7 +63,7 @@ function findf {
 }
 
 function search {
-  grep -r --exclude-dir=".git" --exclude-dir="tmp" "$1" .
+  grep -rI --exclude-dir=".git" --exclude-dir="tmp" "$1" .
 }
 
 ### Added by the Heroku Toolbelt
