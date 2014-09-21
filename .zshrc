@@ -48,9 +48,17 @@ HOME=/Users/colin.bankier
 # Customize to your needs...
 export PATH=/Users/colin.bankier/.rbenv/shims:/usr/local/sbin:/usr/local/bin:/Users/colin.bankier/.rbenv/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X12/bin:/opt/X11/bin:$PATH
 export PATH="/usr/local/sbin:/usr/local/bin:$HOME/.rbenv/bin:$PATH"
-export PATH="$HOME/Play/elixir/bin:$PATH"
+#export PATH="$HOME/Play/elixir/bin:$PATH"
 export PATH="/usr/local/packer:$PATH"
 export PATH="/Users/colin.bankier/bin:$PATH"
+
+# Ansible
+#export PATH=/Users/colin.bankier/Play/ansible/bin:$PATH
+#export PYTHONPATH=/Users/colin.bankier/Play/ansible/lib:/usr/local/lib/python2.7/site-packages
+#export ANSIBLE_LIBRARY=/Users/colin.bankier/Play/ansible/library:/usr/share/ansible/
+#export MANPATH=/Users/colin.bankier/Play/ansible/docs/man:
+#export PYTHONPATH=/usr/local/lib/python2.7/site-packages
+#export PATH="/Users/colin.bankier/Play/ansible/bin:$PATH"
 #eval "$(rbenv init -)"
 if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
 export EDITOR=vim
