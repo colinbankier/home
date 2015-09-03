@@ -1,5 +1,5 @@
 Bundle 'janx/vim-rubytest'
 Bundle 'rodjek/vim-puppet'
 Bundle 'elixir-lang/vim-elixir'
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'ConradIrwin/vim-bracketed-paste'
+Bundle 'bling/vim-airline'
