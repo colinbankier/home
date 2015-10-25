@@ -76,9 +76,20 @@ alias restartforeman='touch .git/CURRENT_BRANCH'
 alias pu="plain-utils"
 alias dc="docker-compose"
 alias dm="docker-machine"
-alias dmfix="docker-machine restart default; eval \"$(docker-machine env default)\""
-alias docker-clean="docker ps -a | tr -s ' ' | cut -d ' ' -f 1 | xargs docker rm"
-alias docker-clean-images="docker rmi $( docker images | grep '<none>' | tr -s ' ' | cut -d ' ' -f 3)"
+alias docker-clean="docker ps -a | grep -v CONTAINER | tr -s ' ' | cut -d ' ' -f 1 | xargs docker rm"
+alias docker-clean-images="docker images | grep -v IMAGE | tr -s ' ' | cut -d ' ' -f 3 | xargs docker rmi -f"
+alias docker-clean-volumes="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro -v /var/lib/docker:/var/lib/docker"
+alias docker-time="docker-machine ssh default 'sudo ntpclient -s -h pool.ntp.org'"
+alias e="emacs"
+
+function dmenv {
+    eval "$(docker-machine env default)"
+}
+
+function dmfix {
+  docker-machine restart default;
+  dmenv
+}
 
 function findf {
   find . -name "*$1*"
@@ -101,9 +112,16 @@ export M2_HOME=/Applications/apache-maven-3.3.1
 export PATH=$PATH:$M2_HOME/bin
 
 # Docker Machine
-eval "$(docker-machine env default)"
+docker-machine start default; dmenv
+
 
 # coreutils
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="$HOME/code/plain-utils/bin:$PATH"
 
+# The following lines were added by compinstall
+zstyle :compinstall filename '/Users/colin.bankier/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
