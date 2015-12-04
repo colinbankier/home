@@ -1,4 +1,5 @@
 # Path to your oh-my-zsh installation.
+export TERM=xterm-256color
 export ZSH=$HOME/.oh-my-zsh
 export DEFAULT_USER=`whoami`
 
@@ -69,7 +70,7 @@ export PATH="/Users/colin.bankier/bin:$PATH"
 #export PATH="/Users/colin.bankier/Play/ansible/bin:$PATH"
 #eval "$(rbenv init -)"
 if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
-export EDITOR=vim
+export EDITOR="emacs -nw"
 export PGHOST=localhost
 alias smartman="rerun -d .git -p 'CURRENT_BRANCH' foreman start"
 alias restartforeman='touch .git/CURRENT_BRANCH'
@@ -80,7 +81,8 @@ alias docker-clean="docker ps -a | grep -v CONTAINER | tr -s ' ' | cut -d ' ' -f
 alias docker-clean-images="docker images | grep -v IMAGE | tr -s ' ' | cut -d ' ' -f 3 | xargs docker rmi -f"
 alias docker-clean-volumes="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro -v /var/lib/docker:/var/lib/docker"
 alias docker-time="docker-machine ssh default 'sudo ntpclient -s -h pool.ntp.org'"
-alias e="emacs"
+alias e="emacs -nw"
+alias emacs="emacs -nw"
 
 function dmenv {
     eval "$(docker-machine env default)"
@@ -103,16 +105,24 @@ function search {
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # Boot2docker
-export DOCKER_TLS_VERIFY=1
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/colin.bankier/.boot2docker/certs/boot2docker-vm
+#export DOCKER_TLS_VERIFY=1
+#export DOCKER_HOST=tcp://192.168.59.103:2376
+#export DOCKER_CERT_PATH=/Users/colin.bankier/.boot2docker/certs/boot2docker-vm
 export GOPATH="$HOME"
-export JAVA_HOME=$(/usr/libexec/java_home)
+#export JAVA_HOME=$(/usr/libexec/java_home)
 export M2_HOME=/Applications/apache-maven-3.3.1
 export PATH=$PATH:$M2_HOME/bin
+# Spark
+export SPARK_HOME=/home/colin/spark-1.5.2-bin-hadoop2.6
+export PYTHONPATH=$SPARK_HOME/python/:$PYTHONPATH
+export PATH="$SPARK_HOME/bin:$PATH"
+# added by Anaconda2 2.4.0 installer
+# export PATH="/home/colin/anaconda2/bin:$PATH"
+# Cask
+export PATH="/home/colin/.cask/bin:$PATH"
 
 # Docker Machine
-docker-machine start default; dmenv
+# docker-machine start default; dmenv
 
 
 # coreutils
