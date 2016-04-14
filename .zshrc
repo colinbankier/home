@@ -129,6 +129,8 @@ export PATH="/home/colin/.cask/bin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="$HOME/code/plain-utils/bin:$PATH"
 
+plugins+=(zsh-completions)
+
 # The following lines were added by compinstall
 zstyle :compinstall filename '/Users/colin.bankier/.zshrc'
 
