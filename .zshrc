@@ -114,7 +114,7 @@ export M2_HOME=/Applications/apache-maven-3.3.1
 export PATH=$PATH:$M2_HOME/bin
 # Spark
 export SPARK_HOME=/home/colin/spark-1.5.2-bin-hadoop2.6
-export PYTHONPATH=$SPARK_HOME/python/:$PYTHONPATH
+# export PYTHONPATH=$SPARK_HOME/python/:$PYTHONPATH
 export PATH="$SPARK_HOME/bin:$PATH"
 # added by Anaconda2 2.4.0 installer
 # export PATH="/home/colin/anaconda2/bin:$PATH"
