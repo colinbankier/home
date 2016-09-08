@@ -61,6 +61,8 @@ export PATH="/usr/local/sbin:/usr/local/bin:$HOME/.rbenv/bin:$PATH"
 export PATH="/usr/local/packer:$PATH"
 export PATH="/Users/colin.bankier/bin:$PATH"
 
+export WORKON_HOME=/home/colin/.virtualenv
+
 # Ansible
 #export PATH=/Users/colin.bankier/Play/ansible/bin:$PATH
 #export PYTHONPATH=/Users/colin.bankier/Play/ansible/lib:/usr/local/lib/python2.7/site-packages
@@ -70,19 +72,21 @@ export PATH="/Users/colin.bankier/bin:$PATH"
 #export PATH="/Users/colin.bankier/Play/ansible/bin:$PATH"
 #eval "$(rbenv init -)"
 if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
-export EDITOR="emacs -nw"
+export EDITOR="emacs"
 export PGHOST=localhost
 alias smartman="rerun -d .git -p 'CURRENT_BRANCH' foreman start"
 alias restartforeman='touch .git/CURRENT_BRANCH'
-alias pu="plain-utils"
+alias open="xdg-open"
 alias dc="docker-compose"
 alias dm="docker-machine"
 alias docker-clean="docker ps -a | grep -v CONTAINER | tr -s ' ' | cut -d ' ' -f 1 | xargs docker rm"
 alias docker-clean-images="docker images | grep -v IMAGE | tr -s ' ' | cut -d ' ' -f 3 | xargs docker rmi -f"
 alias docker-clean-volumes="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro -v /var/lib/docker:/var/lib/docker"
 alias docker-time="docker-machine ssh default 'sudo ntpclient -s -h pool.ntp.org'"
-alias e="emacs -nw"
-alias emacs="emacs -nw"
+# alias e="emacs"
+function e {
+    /usr/bin/emacs "$@" &
+}
 
 function dmenv {
     eval "$(docker-machine env default)"
@@ -109,11 +113,11 @@ export PATH="/usr/local/heroku/bin:$PATH"
 #export DOCKER_HOST=tcp://192.168.59.103:2376
 #export DOCKER_CERT_PATH=/Users/colin.bankier/.boot2docker/certs/boot2docker-vm
 export GOPATH="$HOME"
-#export JAVA_HOME=$(/usr/libexec/java_home)
-export M2_HOME=/Applications/apache-maven-3.3.1
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+# export M2_HOME=/Applications/apache-maven-3.3.1
 export PATH=$PATH:$M2_HOME/bin
 # Spark
-export SPARK_HOME=/home/colin/spark-1.5.2-bin-hadoop2.6
+export SPARK_HOME=/home/colin/Applications/spark-1.6.0-bin-hadoop2.6
 # export PYTHONPATH=$SPARK_HOME/python/:$PYTHONPATH
 export PATH="$SPARK_HOME/bin:$PATH"
 # added by Anaconda2 2.4.0 installer
