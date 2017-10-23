@@ -55,11 +55,14 @@ source $ZSH/oh-my-zsh.sh
 
 setopt interactivecomments
 # Customize to your needs...
-export PATH=$HOME/.rbenv/shims:/usr/local/sbin:/usr/local/bin:$HOME/.rbenv/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X12/bin:/opt/X11/bin:$PATH
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X12/bin:/opt/X11/bin:$PATH
 export PATH="/usr/local/sbin:/usr/local/bin:$HOME/.rbenv/bin:$PATH"
 #export PATH="$HOME/Play/elixir/bin:$PATH"
-export PATH="/usr/local/packer:$PATH"
-export PATH="/Users/colin.bankier/bin:$PATH"
+# export PATH="/usr/local/packer:$PATH"
+export PATH="/home/colin/.cargo/bin:$PATH"
+
+# npm
+export PATH="$PATH:$HOME/.npm/bin"
 
 export WORKON_HOME=/home/colin/.virtualenv
 
@@ -83,6 +86,12 @@ alias docker-clean="docker ps -a | grep -v CONTAINER | tr -s ' ' | cut -d ' ' -f
 alias docker-clean-images="docker images | grep -v IMAGE | tr -s ' ' | cut -d ' ' -f 3 | xargs docker rmi -f"
 alias docker-clean-volumes="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro -v /var/lib/docker:/var/lib/docker"
 alias docker-time="docker-machine ssh default 'sudo ntpclient -s -h pool.ntp.org'"
+# Consider updating the above to
+# docker rm $(docker ps -q -f status=exited)
+# docker volume rm $(docker volume ls -qf dangling=true)
+# docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+
+
 # alias e="emacs"
 function e {
     /usr/bin/emacs "$@" &
@@ -104,6 +113,8 @@ function findf {
 function search {
   grep -rI --exclude-dir=".git" --exclude-dir="tmp" "$1" .
 }
+
+export VAGRANT_DEFAULT_PROVIDER=aws
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -127,6 +138,9 @@ export PATH="/home/colin/.cask/bin:$PATH"
 
 # Docker Machine
 # docker-machine start default; dmenv
+
+export AWS_IAM_USERNAME="cbankier@atypon.com"
+. "$HOME/bin/aws_authenticate.sh"
 
 
 # coreutils

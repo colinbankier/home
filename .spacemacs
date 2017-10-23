@@ -18,6 +18,14 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     nginx
+     ansible
+     sql
+     csv
+     html
+     yaml
+     ruby
+     javascript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -29,16 +37,19 @@ values."
      git
      markdown
      elixir
+     erlang
      elm
+     rust
      (python :variables python-test-runner 'pytest)
      ipython-notebook
      java
-     scala
+     (scala :variables scala-auto-start-ensime t)
      shell-scripts
      ;; org
      (shell :variables
              shell-default-height 30
-             shell-default-position 'bottom)
+             shell-default-position 'bottom
+             shell-default-shell 'multi-term)
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
@@ -70,9 +81,9 @@ values."
    ;; This variable has no effect if Emacs is launched with the parameter
    ;; `--insecure' which forces the value of this variable to nil.
    ;; (default t)
-   dotspacemacs-elpa-https t
+   dotspacemacs-elpa-https nil
    ;; Maximum allowed time in seconds to contact an ELPA repository.
-   dotspacemacs-elpa-timeout 5
+   dotspacemacs-elpa-timeout 30
    ;; If non nil then spacemacs will check for updates at startup
    ;; when the current branch is not `develop'. (default t)
    dotspacemacs-check-for-update t
@@ -257,10 +268,36 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+  ;; (add-hook 'prog-mode-hook
+  ;;           (lambda ()
+  ;;             (setq-default indent-tabs-mode nil
+  ;;                           tab-width 2
+  ;;                           c-basic-offset 2)
+  ;;             (setq indent-tabs-mode nil
+  ;;                   tab-width 2
+  ;;                   c-basic-offset 2)))
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+  (defun elm-format-on-save ()
+    "Runs elm format on elm files."
+    (when (string= (file-name-extension (buffer-file-name)) "elm")
+      (elm-mode-format-buffer)))
+  (add-hook 'before-save-hook 'elm-format-on-save)
+
+  (setq-default indent-tabs-mode nil
+                tab-width 2
+                c-basic-offset 2)
+
+  (setq indent-tabs-mode nil
+        tab-width 2
+        c-basic-offset 2)
+
   (global-linum-mode) ; Show line numbers by default
 
   (setq-default js2-basic-offset 2
                 js-indent-level 2)
+
+  (setq multi-term-program "/usr/bin/zsh")
 
   (mmm-add-classes
    '((markdown-elixir
@@ -268,7 +305,7 @@ you should place your code here."
       :face mmm-declaration-submode-face
       :front "^```elixir[\n\r]+"
       :back "^```$")))
-  
+
   (mmm-add-classes
    '((markdown-ruby
       :submode ruby-mode
