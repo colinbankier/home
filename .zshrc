@@ -155,3 +155,10 @@ zstyle :compinstall filename '/Users/colin.bankier/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /home/colin/.npm/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/colin/.npm/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /home/colin/.npm/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /home/colin/.npm/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
